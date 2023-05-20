@@ -15,6 +15,11 @@
       - [b. Veri setindeki yerel ülke değişkenine dayalı kategorik bir “kıta” değişkeni oluşturun, her gözlemi tek tek gözden geçirin ve her gözlemi “Kuzey Amerika”, “Güney Amerika”, “Avrupa” kategorilerinden birine atayınız. “Asya”, “Avustralya”, “Afrika”. Bunu yapmak için, döngüler ve koşullu ifadeler için kullanınız.](#b-veri-setindeki-yerel-ülke-değişkenine-dayalı-kategorik-bir-kıta-değişkeni-oluşturun-her-gözlemi-tek-tek-gözden-geçirin-ve-her-gözlemi-kuzey-amerika-güney-amerika-avrupa-kategorilerinden-birine-atayınız-asya-avustralya-afrika-bunu-yapmak-için-döngüler-ve-koşullu-ifadeler-için-kullanınız)
       - [c. Ardından, yeni oluşturulan “kıta” değişkeninin frekanslarını gösteriniz ve bu kıtaların her birinden kaç kişinin olduğunu gösteriniz.](#c-ardından-yeni-oluşturulan-kıta-değişkeninin-frekanslarını-gösteriniz-ve-bu-kıtaların-her-birinden-kaç-kişinin-olduğunu-gösteriniz)
       - [d. "Kıta" değişkeni için bar grafiği çiziniz.](#d-kıta-değişkeni-için-bar-grafiği-çiziniz)
+  - [Problem 3](#problem-3)
+    - [Solving Problem 3](#solving-problem-3)
+      - [a. Bu veri seti içinde bağımlı değişkeni ‘1’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.](#a-bu-veri-seti-içinde-bağımlı-değişkeni-1-olanları-ayrı-bir-veri-kümesi-haline-getiriniz-sonrasında-bu-veri-kümesi-için-pca-gerçekleştiriniz-ve-principal-component-dağılımlarının-grafik-matrisini-gösteriniz-kaç-bileşen-tutacaksınız-sebeplerini-açıklayınız-i̇lk-dört-bileşenin-her-birini-inceleyip-her-bileşen-tarafından-kapsanan-varyasyon-oranlarını-açıklayınız)
+      - [b. Şimdi aynı işlemi veri seti içinde bağımlı değişkeni ‘7’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.](#b-şimdi-aynı-işlemi-veri-seti-içinde-bağımlı-değişkeni-7-olanları-ayrı-bir-veri-kümesi-haline-getiriniz-sonrasında-bu-veri-kümesi-için-pca-gerçekleştiriniz-ve-principal-component-dağılımlarının-grafik-matrisini-gösteriniz-kaç-bileşen-tutacaksınız-sebeplerini-açıklayınız-i̇lk-dört-bileşenin-her-birini-inceleyip-her-bileşen-tarafından-kapsanan-varyasyon-oranlarını-açıklayınız)
+      - [c. Sonrasında 1 rakamı ve 7 rakamı için oluşan PCA sonuçlarını karşılaştırınız. 1 rakamı ve 7 rakamına karşılık gelen PCA sonuçlarında net bir gözlem farkı görüyor musunuz?](#c-sonrasında-1-rakamı-ve-7-rakamı-için-oluşan-pca-sonuçlarını-karşılaştırınız-1-rakamı-ve-7-rakamına-karşılık-gelen-pca-sonuçlarında-net-bir-gözlem-farkı-görüyor-musunuz)
   
 ## Problem 1
 
@@ -420,3 +425,309 @@ plt.show()
 ```
 
 ![Continent değişkeninin bar grafiği gösterimi](photos/Problem_2_Photo_2.png)
+
+## Problem 3
+
+UCI sitesine yüklenen http://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits “Pendigit” veri seti üzerinde çalışılmıştır. 
+
+a.	Bu veri seti içinde bağımlı değişkeni ‘1’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.  
+
+b.	Şimdi aynı işlemi veri seti içinde bağımlı değişkeni ‘7’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.  
+
+c.	Sonrasında 1 rakamı ve 7 rakamı için oluşan PCA sonuçlarını karşılaştırınız. 1 rakamı ve 7 rakamına karşılık gelen PCA sonuçlarında net bir gözlem farkı görüyor musunuz?
+
+
+### Solving Problem 3
+
+#### a. Bu veri seti içinde bağımlı değişkeni ‘1’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız. 
+
+* Aşağıda kod yapısı ile bağımlı değişken değeri 1 olan yeni bir veri seti oluşturulmuştur. Burada 16 değeri bağımlı değişkenin olduğu sütunu ifade etmektedir.
+
+```py
+data_for_one = data[data[16] == 1]
+data_for_one.head()
+```
+* Bağımlı değişken değeri 1 olan yeni veri seti aşağıda verilmiştir.
+
+||0|	1	|2	|3|	4	|5|	6	|7|	8	|9	|10	|11|	12|	13|	14	|15	|16|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|2|	0	|57|	31|	68|	72|	90	|100	|100	|76	|75	|50	|51	|28	|25	|16|	0	|1|
+|4|	0|	67|	49|	83|	100|	100	|81|	80|	60|	60|	40|	40|	33|	20|	47|	0|	1|
+|21|	0|	46|	49|	64|	78|	87|	100|	100|	91	|75	|85	|49|	75|	24|	89|	0	|1|
+|29|	100|	84|	31|	100|	0	|88|	8|	70|	15|	53|	15|	35|	0|	17|	0	|0	|1|
+|51	|51|	76|	68|	91|	100|	100|	83|	80|	59	|60	|34	|40	|10|	20|	0	|0	|1|
+
+
+```py
+X = data_for_one.iloc[:, 0:16].values
+y = data_for_one.iloc[:, 16].values
+
+x_scaled = StandardScaler().fit_transform(X)
+
+pca = PCA(n_components=9)
+ 
+pca_features = pca.fit_transform(x_scaled)
+ 
+print('Shape before PCA: ', x_scaled.shape)
+print('Shape after PCA: ', pca_features.shape)
+ 
+pca_df = pd.DataFrame(
+    data=pca_features, 
+    columns=['PC1', 'PC2', 'PC3','PC4','PC5','PC6','PC7','PC8','PC9'])
+
+# Shape before PCA:  (779, 16)
+# Shape after PCA:  (779, 9)
+
+# Varyans değerleri
+pca.explained_variance_
+# array([7.87496392, 2.35533002, 1.67902588, 1.0263448 , 0.88400569, 0.50946671, 0.45244735, 0.36414339, 0.27647422])
+
+# Varyans değerlerinin yüzdelik ifadesi
+pca.explained_variance_ratio_
+# array([0.49155343, 0.14701916, 0.10480441, 0.06406421, 0.05517943, 0.03180079, 0.02824166, 0.02272975, 0.01725746])
+
+# Varyans değerlerinin yüzdelik karşılıklarının toplamsal gösterimi
+pca.explained_variance_ratio_.cumsum()
+# array([0.49155343, 0.63857258, 0.74337699, 0.8074412 , 0.86262063, 0.89442142, 0.92266308, 0.94539283, 0.96265028])
+
+# PCA Compnent'leri
+pca.components_
+array([[ 0.21807792,  0.23338167,  0.18375849,  0.27609846, -0.03753847,
+         0.09124637, -0.28851327, -0.32604359, -0.30271932, -0.33670971,
+        -0.28961236, -0.33119847, -0.17956004, -0.31022111,  0.10278154,
+         0.2259977 ],
+       [-0.06075424, -0.15266336, -0.37541484, -0.23819276, -0.57383464,
+        -0.36751323, -0.27290989, -0.05669793, -0.07895806, -0.04748938,
+        -0.04283698, -0.04438753,  0.24831733,  0.02910607,  0.32658115,
+         0.22765173],
+       [ 0.4210828 ,  0.09795268, -0.08120649, -0.09523532, -0.20183512,
+        -0.3425673 , -0.10284958,  0.04642226, -0.19952436,  0.14243327,
+        -0.18451038,  0.17601736, -0.40812899,  0.22212249, -0.52519998,
+        -0.0986983 ],
+       [ 0.25428012, -0.28284699,  0.55409059, -0.06669539,  0.21068872,
+        -0.56860085,  0.1378663 , -0.22538387,  0.15658671, -0.05269443,
+         0.0752674 ,  0.02399727,  0.14514893,  0.05227451,  0.10059053,
+         0.19727249],
+       [ 0.31474607,  0.54592671,  0.08941783,  0.32715098, -0.16268111,
+        -0.05931451, -0.11944851, -0.01426568,  0.02905911,  0.06776398,
+         0.29616034,  0.15426587,  0.49084836,  0.11296741,  0.07442485,
+        -0.25931201],
+       [-0.12846243,  0.35044274, -0.12949162,  0.13302794, -0.00184405,
+         0.00286767,  0.18529242, -0.01314345,  0.21971521, -0.02965053,
+         0.12517253,  0.05313739, -0.02563086,  0.21298064, -0.23626695,
+         0.78880903],
+       [-0.08843837, -0.07925124, -0.08353351, -0.00463468, -0.20998613,
+        -0.11430778, -0.05964585, -0.22375409,  0.31773712, -0.23032976,
+         0.53220373, -0.26370536, -0.10903531, -0.37328879, -0.42348396,
+        -0.17536454],
+       [ 0.49981861,  0.23082963, -0.03102156, -0.38453556, -0.03471164,
+         0.11094853,  0.11894795,  0.30736856,  0.35168385,  0.09408358,
+         0.08584362, -0.1819996 , -0.25937854, -0.23925262,  0.34919922,
+         0.08028206],
+       [-0.20562901,  0.22989691, -0.19666518,  0.30209376, -0.06878326,
+        -0.37919792,  0.43357165, -0.11761468,  0.2836124 , -0.14618889,
+        -0.31763888, -0.07197168, -0.24832445,  0.05957377,  0.24689897,
+        -0.30088497]])
+```
+
+* PCA uygulanırken tutulacak bileşen sayısı 9 olarak belirlenmiştir. Bu noktada 0.05 değeri göz önünde bulundurulmuş ve varyans yüzdelik oranlarının 0.95'den yüksek olması hedeflenmiştir. Bu koşul sadece 9 bileşen ve üstü olduğu zaman mümkün olmuştur. Bu yüzden işlemler 9 bileşen tutularak tamamlanmıştır. Elde edilen tüm değerler aşağıdaki tabloda gösterilmiştir.
+
+|V(PCA)| Yüzdelik Oran|
+|------|--------------|
+|V(PCA1)|  0.49155343  | 
+|V(PCA2)|  0.14701916  | 
+|V(PCA3)|  0.10480441  | 
+|V(PCA4)|  0.06406421  | 
+|V(PCA5)|  0.05517943  | 
+|V(PCA6)|  0.03180079  | 
+|V(PCA7)|  0.02824166  | 
+|V(PCA8)|  0.02272975  | 
+|V(PCA9)|  0.01725746  |
+|Toplam |**0.96265028**|
+
+* İlk dört bileşenin sahip olduğu oranlar V(PCA1) = 0.49155343, V(PCA2) =  0.14701916, V(PCA3) =  0.10480441, V(PCA4) =  0.06406421 olarak elde edilmiştir. İlk bileşen ile neredeyse verinin yarısı temsil etmektedir. Elde edilen 4 bileşenin toplam temsil değerine baktığımızda ise 0,80744121 değeri elde edilmektedir. Bu değerde 0.95 değerinin çok altında kalmaktadır.
+
+```
+from sklearn.decomposition import PCA
+sns.set()
+
+pca = PCA(n_components=9)
+ 
+# Fit and transform data
+pca.fit_transform(x_scaled)
+ 
+# Bar plot of explained_variance
+plt.bar(
+    range(1,len(pca.explained_variance_)+1),
+    pca.explained_variance_
+    )
+ 
+ 
+plt.xlabel('PCA Feature')
+plt.ylabel('Explained variance')
+plt.title('Feature Explained Variance')
+plt.show()
+```
+
+![PCA sütun grafiği gösterimi (1)](photos/Problem_3_Photo_1.png)
+
+```
+plt.plot(np.cumsum(pca.explained_variance_ratio_))
+plt.xlabel('number of components')
+plt.ylabel('cumulative explained variance')
+```
+
+![PCA grafik gösterimi (1)](photos/Problem_3_Photo_2.png)
+
+#### b. Şimdi aynı işlemi veri seti içinde bağımlı değişkeni ‘7’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.
+
+* Bir önceki şıkta yapılan işlem adımlarının benzeri burada da uygulanmıştır. Aşağıda kod yapısı ile bağımlı değişken değeri 7 olan yeni bir veri seti oluşturulmuştur. Burada 16 değeri bağımlı değişkenin olduğu sütunu ifade etmektedir.
+
+```py
+data_for_seven = data[data[16] == 7]
+data_for_seven.head()
+```
+* Bağımlı değişken değeri 7 olan yeni veri seti aşağıda verilmiştir.
+
+||0|	1|	2	|3|	4|	5|	6|	7|	8	|9	|10	|11	|12|	13|	14	|15	|16|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|14|	0|	85|	38|	100|	81|	88|	87|	50	|84|	12|	58|	0|	53|	22|	100|	24	|7|
+|32|	0	|98|	36|	100|	80|	85|	68|	42|	56|	0	|25|	23|	50|	37|	100|	32|	7|
+|40|	0	|93|	62|	100|	100|	78|	69|	43|	50|	5	|35|	0	|15|	35|	86|	37|	7|
+|64|	0|	100|	61|	100|	100|	93|	63|	64|	36|	33|	14|	0	|9	|29|	47|	42|	7|
+|75|	0	|97|	42|	100|	67|	71|	53|	35|	34|	0	|16|	23|	40|	42|	100|	42|	7|
+
+```py
+X = data_for_seven.iloc[:, 0:16].values
+y = data_for_seven.iloc[:, 16].values
+
+x_scaled = StandardScaler().fit_transform(X)
+
+pca = PCA(n_components=9)
+ 
+pca_features = pca.fit_transform(x_scaled)
+ 
+print('Shape before PCA: ', x_scaled.shape)
+print('Shape after PCA: ', pca_features.shape)
+ 
+pca_df = pd.DataFrame(
+    data=pca_features, 
+    columns=['PC1', 'PC2', 'PC3','PC4','PC5','PC6','PC7','PC8','PC9'])
+
+# Shape before PCA:  (778, 16)
+# Shape after PCA:  (778, 9)
+
+pca_df['target'] = y
+
+pca.explained_variance_
+# array([6.17085583, 2.61395693, 1.79377255, 1.41699298, 0.9683211 , 0.7998649 , 0.64142128, 0.49193723, 0.38096392])
+
+pca.explained_variance_ratio_
+# array([0.38518276, 0.16316232, 0.11196668, 0.08844823, 0.06044228, 0.0499273 , 0.0400373 , 0.03070656, 0.02377964])
+
+pca.explained_variance_ratio_.cumsum()
+# array([0.38518276, 0.54834508, 0.66031176, 0.74875999, 0.80920227, 0.85912957, 0.89916687, 0.92987343, 0.95365307])
+
+pca.components_
+array([[-0.05903233, -0.00500511, -0.24286114, -0.06734305, -0.0155228 ,
+         0.32181452,  0.34445712,  0.37256181,  0.32387737,  0.35897042,
+         0.26141909,  0.09425747,  0.04567512, -0.2811223 , -0.26538456,
+        -0.33043807],
+       [-0.0742085 , -0.12877855, -0.36395524, -0.02081147, -0.5554185 ,
+        -0.14222647, -0.1847333 , -0.04346973, -0.03002929,  0.05000231,
+         0.05847548,  0.48771085,  0.42261869,  0.23827304, -0.0119369 ,
+         0.0084987 ],
+       [ 0.45919596,  0.28334892,  0.15760389, -0.41671163, -0.14270312,
+        -0.16635394, -0.10913753,  0.10248743, -0.22882563,  0.23228778,
+        -0.29038177,  0.28492242, -0.28235042, -0.0837014 , -0.1323365 ,
+        -0.25268683],
+       [ 0.13244631,  0.4557196 ,  0.25668512, -0.17760972,  0.10099668,
+        -0.2381871 ,  0.03598084, -0.17893885,  0.17789753, -0.15142484,
+         0.49183085, -0.01814367,  0.35892816,  0.0644585 , -0.37006427,
+         0.10179548],
+       [ 0.67594562, -0.56556957,  0.07813137,  0.26220845,  0.09443723,
+         0.00081012,  0.09293249,  0.00763128,  0.02345073,  0.02136188,
+         0.13425667,  0.05809438, -0.00090736,  0.17255962, -0.25848993,
+         0.10842647],
+       [ 0.07768212, -0.4153223 , -0.08744648, -0.77958814, -0.03559434,
+        -0.02364703,  0.01957984, -0.05470414,  0.09941936, -0.09688681,
+         0.07508541, -0.29257383,  0.14666576, -0.1333497 ,  0.20836762,
+         0.08745105],
+       [-0.17703558,  0.06304566, -0.11779893, -0.30324025,  0.24905415,
+         0.28471368,  0.07320364,  0.19903834, -0.14238434,  0.12775721,
+        -0.00730318,  0.12519514, -0.18000468,  0.61065198, -0.21933334,
+         0.40627641],
+       [-0.13661523, -0.12952228, -0.13771917,  0.00170333,  0.10644895,
+         0.1307948 , -0.37164235,  0.01390629, -0.56504101, -0.02044981,
+        -0.00586306, -0.22181317,  0.20548041, -0.28222283, -0.53208346,
+        -0.07022083],
+       [ 0.44314755,  0.35277241, -0.12465318,  0.07509938, -0.02085312,
+         0.48084672, -0.1272315 ,  0.21261493, -0.10931481, -0.00257439,
+        -0.04353594, -0.20865196,  0.40489188,  0.04495348,  0.36582924,
+         0.08817878]])
+```
+
+* PCA uygulanırken tutulacak bileşen sayısı yine 9 olarak belirlenmiştir. Burada yine 0.05 değeri göz önünde bulundurularak bileşen sayısına karar verilmiştir. PCA varyanslarına ait değerer aşağıdaki grafikte gösterilmiştir.
+
+|V(PCA)| Yüzdelik Oran|
+|------|--------------|
+|V(PCA1)|  0.38518276  | 
+|V(PCA2)|  0.16316232  | 
+|V(PCA3)|  0.11196668  | 
+|V(PCA4)|  0.08844823  | 
+|V(PCA5)|  0.06044228  | 
+|V(PCA6)|  0.0499273   | 
+|V(PCA7)|  0.0400373   | 
+|V(PCA8)|  0.03070656  | 
+|V(PCA9)|  0.02377964  |
+|Toplam |**0.95365307**|
+
+* İlk dört bileşenin sahip olduğu değerler incelendiğinde diğer örnektekine göre daha düşük temsil değerine sahip olduğunu söylemek mümkündür. İlk dört bileşenin yüzdesel olarak temsil değeri 0,74875999 olarak hesaplanmıştır. Ayrıca bağımlı değişken 1 olarak yapılan hesaplamalarda birinci bileşinin veri temsil oranı 0.5 civarında iken bu örnekteki birinci bileşenin temsil oranı 0.38 olarak hesaplanmıştır.
+
+```py
+from sklearn.decomposition import PCA
+sns.set()
+
+pca = PCA(n_components=9)
+ 
+# Fit and transform data
+pca.fit_transform(x_scaled)
+ 
+# Bar plot of explained_variance
+plt.bar(
+    range(1,len(pca.explained_variance_)+1),
+    pca.explained_variance_
+    )
+ 
+ 
+plt.xlabel('PCA Feature')
+plt.ylabel('Explained variance')
+plt.title('Feature Explained Variance')
+plt.show()
+```
+![PCA sütun grafiği gösterimi (7)](photos/Problem_3_Photo_3.png)
+
+```PY
+plt.plot(np.cumsum(pca.explained_variance_ratio_))
+plt.xlabel('number of components')
+plt.ylabel('cumulative explained variance')
+```
+
+![PCA grafik gösterimi (7)](photos/Problem_3_Photo_4.png)
+
+#### c. Sonrasında 1 rakamı ve 7 rakamı için oluşan PCA sonuçlarını karşılaştırınız. 1 rakamı ve 7 rakamına karşılık gelen PCA sonuçlarında net bir gözlem farkı görüyor musunuz?
+
+* Bağımlı değişken 1 ve bağımlı değişken 7 olan veri setleri için yapılan PCA sonuçları aşağıdaki tabloda gösterilmiştir. Elde edilen sonuçlar incelendiğinde iki tarafta da 9 bileşen ile temsil yapıldığı görülmektedir. Bileşen bazında karşılaştırma yapıldığında ilk bileşenler arasında bariz bir fark olduğunu görmek mümkündür. Ama geri kalan bileşenler karşılaştırıldığında çok ufak fark olduğu gözlemlenmiştir. Ek olarak bağımlı değişken 7 örneği grafiğinin bağımlı değişken 1 örneği grafiğine göre daha doğrusal olduğunu söylemek mümkündür.
+
+|V(PCA)| Bağımlı Değişken 7 | Bağımlı Değişken 1|
+|------|---------------|--------------|
+|V(PCA1)|  0.38518276  |  0.49155343  |
+|V(PCA2)|  0.16316232  |  0.14701916  |
+|V(PCA3)|  0.11196668  |  0.10480441  |
+|V(PCA4)|  0.08844823  |  0.06406421  |
+|V(PCA5)|  0.06044228  |  0.05517943  |
+|V(PCA6)|  0.0499273   |  0.03180079  |
+|V(PCA7)|  0.0400373   |  0.02824166  |
+|V(PCA8)|  0.03070656  |  0.02272975  |
+|V(PCA9)|  0.02377964  |  0.01725746  |
+|Toplam |**0.95365307**|**0.96265028**|
