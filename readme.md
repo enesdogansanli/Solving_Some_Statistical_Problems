@@ -9,6 +9,12 @@
       - [b. Sales değişkeni için ortalama, medyan, varyans ve standart sapma ölçümlerini ve değişkenler arasındaki covaryansı hesaplayınız.](#b-sales-değişkeni-için-ortalama-medyan-varyans-ve-standart-sapma-ölçümlerini-ve-değişkenler-arasındaki-covaryansı-hesaplayınız)
       - [c. Ages değişkeni için 10, 25, 75, 90 niceliklerini hesaplayınız.](#c-ages-değişkeni-için-10-25-75-90-niceliklerini-hesaplayınız)
       - [d. Tüm değişkenleri özetlemek için betimleyici istatistik bilgilerini hesaplayınız.](#d-tüm-değişkenleri-özetlemek-için-betimleyici-istatistik-bilgilerini-hesaplayınız)
+  - [Problem 2](#problem-2)
+    - [Solving Problem 2](#solving-problem-2)
+      - [a. *capital-gain* için histogram grafiği çizin. Grafiğin şekli hakkında yorum yapınız.](#a-capital-gain-için-histogram-grafiği-çizin-grafiğin-şekli-hakkında-yorum-yapınız)
+      - [b. Veri setindeki yerel ülke değişkenine dayalı kategorik bir “kıta” değişkeni oluşturun, her gözlemi tek tek gözden geçirin ve her gözlemi “Kuzey Amerika”, “Güney Amerika”, “Avrupa” kategorilerinden birine atayınız. “Asya”, “Avustralya”, “Afrika”. Bunu yapmak için, döngüler ve koşullu ifadeler için kullanınız.](#b-veri-setindeki-yerel-ülke-değişkenine-dayalı-kategorik-bir-kıta-değişkeni-oluşturun-her-gözlemi-tek-tek-gözden-geçirin-ve-her-gözlemi-kuzey-amerika-güney-amerika-avrupa-kategorilerinden-birine-atayınız-asya-avustralya-afrika-bunu-yapmak-için-döngüler-ve-koşullu-ifadeler-için-kullanınız)
+      - [c. Ardından, yeni oluşturulan “kıta” değişkeninin frekanslarını gösteriniz ve bu kıtaların her birinden kaç kişinin olduğunu gösteriniz.](#c-ardından-yeni-oluşturulan-kıta-değişkeninin-frekanslarını-gösteriniz-ve-bu-kıtaların-her-birinden-kaç-kişinin-olduğunu-gösteriniz)
+      - [d. "Kıta" değişkeni için bar grafiği çiziniz.](#d-kıta-değişkeni-için-bar-grafiği-çiziniz)
   
 ## Problem 1
 
@@ -232,3 +238,185 @@ min     24.000000   25.000000   10.000000
 75%    131.000000   66.000000   16.000000  
 max    191.000000   80.000000   18.000000  
 ```
+
+
+## Problem 2
+
+UCI sitesine yüklenen https://archive.ics.uci.edu/ml/datasets/adult “adult.data” veri seti üzerinde çalışılmıştır.
+
+(a)	capital-gain için histogram grafiği çizin. Grafiğin şekli hakkında yorum yapınız.
+
+(b)	Veri setindeki yerel ülke değişkenine dayalı kategorik bir “kıta” değişkeni oluşturun, her gözlemi tek tek gözden geçirin ve her gözlemi “Kuzey Amerika”, “Güney Amerika”, “Avrupa” kategorilerinden birine atayınız. “Asya”, “Avustralya”, “Afrika”. Bunu yapmak için, döngüler ve koşullu ifadeler için kullanınız.
+
+(c)	Ardından, yeni oluşturulan “kıta” değişkeninin frekanslarını gösteriniz ve bu kıtaların her birinden kaç kişinin olduğunu gösteriniz.
+
+(d)	"Kıta" değişkeni için bar grafiği çiziniz.
+
+### Solving Problem 2
+
+#### a. *capital-gain* için histogram grafiği çizin. Grafiğin şekli hakkında yorum yapınız.
+
+![Capital-Gain Photo](photos/Problem_2_Photo_1.png)
+
+TODO: Eklenen grafik hakkında yorumda bulun.
+
+#### b. Veri setindeki yerel ülke değişkenine dayalı kategorik bir “kıta” değişkeni oluşturun, her gözlemi tek tek gözden geçirin ve her gözlemi “Kuzey Amerika”, “Güney Amerika”, “Avrupa” kategorilerinden birine atayınız. “Asya”, “Avustralya”, “Afrika”. Bunu yapmak için, döngüler ve koşullu ifadeler için kullanınız.
+
+* Veri seti içerisinde bulunan ülkeler ve her ülkeden kaç adet olduğunu gösteren tablo aşağıda verilmiştir.
+
+|Country Name | Count of Country |
+|-------------|-------------|
+|United-States             |   29170|
+|Mexico                     |     643|
+|?                          |     583|
+|Philippines                |     198|
+|Germany                    |     137|
+|Canada                     |     121|
+|Puerto-Rico                |     114|
+|El-Salvador                |     106|
+|India                      |     100|
+|Cuba                       |      95|
+|England                    |      90|
+|Jamaica                    |      81|
+|South                      |      80|
+|China                      |      75|
+|Italy                      |      73|
+|Dominican-Republic         |      70|
+|Vietnam                    |      67|
+|Guatemala                  |      64|
+|Japan                      |      62|
+|Poland                     |      60|
+|Columbia                   |      59|
+|Taiwan                     |      51|
+|Haiti                      |      44|
+|Iran                       |      43|
+|Portugal                   |      37|
+|Nicaragua                  |      34|
+|Peru                       |      31|
+|France                     |      29|
+|Greece                     |      29|
+|Ecuador                    |      28|
+|Ireland                    |      24|
+|Hong                       |      20|
+|Cambodia                   |      19|
+|Trinadad&Tobago            |      19|
+|Laos                       |      18|
+|Thailand                   |      18|
+|Yugoslavia                 |      16|
+|Outlying-US(Guam-USVI-etc) |      14|
+|Honduras                   |      13|
+|Hungary                    |      13|
+|Scotland                   |      12|
+|Holand-Netherlands         |       1|
+
+
+* Ülkeleri kıtalara ayırma işleminde hangi ülkenin hangi kıtaya ait olduğu bilgisi internet üzerinden alınmıştır. Alınan bilgiler ışığında kıtalar ve kıtalara ait ülkeler aşağıdaki gibi listelere ayrılmıştır.
+
+```py
+Asia = [' China',' Hong',' India',' Iran',' Cambodia',' Japan', ' Laos' , ' Philippines' ,' Vietnam' ,' Taiwan', ' Thailand']
+North_America = [' Canada',' United-States',' Puerto-Rico',' Cuba',' El-Salvador',' Dominican-Republic',' Guatemala',' Haiti',' Honduras', ' Mexico',' Nicaragua',' Outlying-US(Guam-USVI-etc)',' Jamaica']
+Europe = [' England' ,' France', ' Germany' ,' Greece',' Holand-Netherlands',' Hungary', ' Ireland',' Italy',' Poland',' Portugal',' Scotland',' Yugoslavia']
+South_America = [' Columbia',' Ecuador',' Peru',' Trinadad&Tobago']
+South_Africa = [' South']
+No_Information = [' ?']
+```
+
+* Veri içerisine ülke bilgisine bağlı olarak kıta kolonu eklenmiştir. for ve if yapıları kullanılarak işlem gerçekleştirilmiştir.
+
+```py
+def add_continents(data):
+    '''
+    Adds a new column to the dataframe that shows the continent information of the countries.
+
+    Parameters
+    ----------
+    dataframe: dataframe
+
+    Returns
+    ----------
+    dataframe: dataframe
+    '''
+
+    data['continent'] =  ""
+
+    for i in range(data.shape[0]):
+        if data['native-country'][i] in Asia:
+            data['continent'][i] = 'Asia'
+        elif data['native-country'][i] in North_America:
+            data['continent'][i] = 'North America'
+        elif data['native-country'][i] in Europe:
+            data['continent'][i] = 'Europe'
+        elif data['native-country'][i] in South_America:
+            data['continent'][i] = 'South America'
+        elif data['native-country'][i] in South_Africa:
+            data['continent'][i] = 'South Africa'
+        elif data['native-country'][i] in No_Information:
+            data['continent'][i] = 'No Information'
+        else:
+            data['continent'][i] = 'Other'
+    
+    return data
+
+data = add_continents(data)
+data.head()
+```
+
+* Continent (kıta) bilgisinin eklenmesinden sonra veri setinin görünümü aşağıda verilmiştir.
+
+|age	|workclass|	fnlwgt	|education|	education-num	|marital-status|	occupation|	relationship|	race	|sex	|capital-gain|	capital-loss|	hours-per-week	|native-country|	income|	continent|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|39|	State-gov|	77516|	Bachelors|	13|	Never-married	|Adm-clerical|	Not-in-family|	White	|Male|	2174|	0|	40|	United-States|	<=50K	|North America|
+|50|	Self-emp-not-inc|	83311|	Bachelors|	13|	Married-civ-spouse	|Exec-managerial|	Husband	|White|	Male|	0|	0	|13	|United-States	|<=50K	|North America|
+|38|	Private|	215646|	HS-grad	|9|	Divorced|	Handlers-cleaners|	Not-in-family|	White	|Male|	0	|0|	40	|United-States|	<=50K	|North America|
+|53|	Private	|234721|	11th|	7|	Married-civ-spouse|	Handlers-cleaners|	Husband	|Black	|Male|	0|	0|	40|	United-States|	<=50K|North America|
+
+
+#### c. Ardından, yeni oluşturulan “kıta” değişkeninin frekanslarını gösteriniz ve bu kıtaların her birinden kaç kişinin olduğunu gösteriniz.
+
+Frekans analizi = (En büyük-En küçük)/ Sınıf Sayısı
+
+Frekans aralık değeri = (30569-80)/6
+
+Frekans aralık değeri = 5081,5
+
+* Elde edilen frekans aralık değerine karşılık frekans analiz sonuçları aşağıdaki tabloda verilmiştir.
+
+|Frekans Aralığı | Adet |
+|----------------|------|
+|80 - 5162 aralığında      |  5|
+|5162 - 10.244 aralığında  |  0|
+|10.244 - 15.326 aralığında|  0|
+|15.326 - 20.408 aralığında|  0|
+|20.408 - 25.490 aralığında|  0|
+|25.490 - 30570 aralığında |  1|
+
+* Kıtalara ait kişi sayısı aşağıdaki tabloda verilmiştir.
+
+| Name of Continent | Count |
+|-------------------|-------|
+|North America    |   30569 |
+|Asia             |     671 |
+|No Information   |     583 |
+|Europe           |     521 |
+|South America    |     137 |
+|South Africa     |      80 |
+
+
+#### d. "Kıta" değişkeni için bar grafiği çiziniz.
+
+```py
+continents_count =  data['continent'].value_counts()
+
+fig = plt.figure(figsize = (10, 5))
+ 
+# creating the bar plot
+plt.bar(continents_count.index, continents_count.values, color ='maroon',
+        width = 0.4)
+ 
+plt.xlabel("Continents Names")
+plt.ylabel("The number of countries the continents have")
+plt.title("Bar Plot for Continents")
+plt.show()
+```
+
+![Continent değişkeninin bar grafiği gösterimi](photos/Problem_2_Photo_2.png)
