@@ -20,6 +20,10 @@
       - [a. Bu veri seti içinde bağımlı değişkeni ‘1’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.](#a-bu-veri-seti-içinde-bağımlı-değişkeni-1-olanları-ayrı-bir-veri-kümesi-haline-getiriniz-sonrasında-bu-veri-kümesi-için-pca-gerçekleştiriniz-ve-principal-component-dağılımlarının-grafik-matrisini-gösteriniz-kaç-bileşen-tutacaksınız-sebeplerini-açıklayınız-i̇lk-dört-bileşenin-her-birini-inceleyip-her-bileşen-tarafından-kapsanan-varyasyon-oranlarını-açıklayınız)
       - [b. Şimdi aynı işlemi veri seti içinde bağımlı değişkeni ‘7’ olanları ayrı bir veri kümesi haline getiriniz. Sonrasında bu veri kümesi için PCA gerçekleştiriniz ve Principal Component dağılımlarının grafik matrisini gösteriniz. Kaç bileşen tutacaksınız? Sebeplerini açıklayınız. İlk dört bileşenin her birini inceleyip her bileşen tarafından kapsanan varyasyon oranlarını açıklayınız.](#b-şimdi-aynı-işlemi-veri-seti-içinde-bağımlı-değişkeni-7-olanları-ayrı-bir-veri-kümesi-haline-getiriniz-sonrasında-bu-veri-kümesi-için-pca-gerçekleştiriniz-ve-principal-component-dağılımlarının-grafik-matrisini-gösteriniz-kaç-bileşen-tutacaksınız-sebeplerini-açıklayınız-i̇lk-dört-bileşenin-her-birini-inceleyip-her-bileşen-tarafından-kapsanan-varyasyon-oranlarını-açıklayınız)
       - [c. Sonrasında 1 rakamı ve 7 rakamı için oluşan PCA sonuçlarını karşılaştırınız. 1 rakamı ve 7 rakamına karşılık gelen PCA sonuçlarında net bir gözlem farkı görüyor musunuz?](#c-sonrasında-1-rakamı-ve-7-rakamı-için-oluşan-pca-sonuçlarını-karşılaştırınız-1-rakamı-ve-7-rakamına-karşılık-gelen-pca-sonuçlarında-net-bir-gözlem-farkı-görüyor-musunuz)
+  - [Problem 4](#problem-4)
+    - [Solving Problem 4](#solving-problem-4)
+      - [a. Pima Kızılderili kadınları için diyastolik kan basıncının popülasyon ortalamasının 70 olmadığı hipotezini değerlendiriniz.](#a-pima-kızılderili-kadınları-için-diyastolik-kan-basıncının-popülasyon-ortalamasının-70-olmadığı-hipotezini-değerlendiriniz)
+      - [b. Diyabetik ve diyabetik olmayan Pima Kızılderili kadınlar için diyastolik kan basıncının örnek ortalamaları arasındaki farkı bulunuz. Diyastolik kan basıncı ortalamaları arasındaki fark 0.01 düzeyinde istatistiksel olarak anlamlı mı?](#b-diyabetik-ve-diyabetik-olmayan-pima-kızılderili-kadınlar-için-diyastolik-kan-basıncının-örnek-ortalamaları-arasındaki-farkı-bulunuz-diyastolik-kan-basıncı-ortalamaları-arasındaki-fark-001-düzeyinde-istatistiksel-olarak-anlamlı-mı)
   
 ## Problem 1
 
@@ -731,3 +735,240 @@ plt.ylabel('cumulative explained variance')
 |V(PCA8)|  0.03070656  |  0.02272975  |
 |V(PCA9)|  0.02377964  |  0.01725746  |
 |Toplam |**0.95365307**|**0.96265028**|
+
+## Problem 4
+
+Pima Kızılderili kadınlarında diyabeti inceleyen bir veri seti olan “Pima.tr” üzerinde çalışılmıştır. Aşağıdaki sorular Null Hipotez ve alternatif hipotez belirterek uygun istatistiksel testler gerçekleştirilmiştir.
+
+a.	Pima Kızılderili kadınları için diyastolik kan basıncının popülasyon ortalamasının 70 olmadığı hipotezini değerlendiriniz.
+
+b.	Diyabetik ve diyabetik olmayan Pima Kızılderili kadınlar için diyastolik kan basıncının örnek ortalamaları arasındaki farkı bulunuz. Diyastolik kan basıncı ortalamaları arasındaki fark 0.01 düzeyinde istatistiksel olarak anlamlı mı?
+
+### Solving Problem 4
+
+* Veri setine ait genel bilgiler ilgili komutların çalıştırılmasıyla elde edilmiştir.
+
+```py
+data.head()
+```
+
+||npreg|	glu	|bp	|skin|	bmi|	ped|	age	|type|
+|-|-|-|-|-|-|-|-|-|
+|0	|5	|86|	68|	28|	30.2|	0.364|	24|	No|
+|1	|7	|195|	70|	33|	25.1|	0.163|	55	|Yes|
+|2|	5|	77|	82|	41	|35.8|	0.156|	35|	No|
+|3	|0|	165|	76|	43|	47.9|	0.259	|26|	No|
+|4	|0	|107	|60	|25	|26.4|	0.133|	23|	No|
+
+```
+##################### Shape #####################
+(200, 8)
+##################### Types #####################
+npreg      int64
+glu        int64
+bp         int64
+skin       int64
+bmi      float64
+ped      float64
+age        int64
+type      object
+dtype: object
+##################### Head #####################
+   npreg  glu  bp  skin   bmi    ped  age type
+0      5   86  68    28  30.2  0.364   24   No
+1      7  195  70    33  25.1  0.163   55  Yes
+2      5   77  82    41  35.8  0.156   35   No
+3      0  165  76    43  47.9  0.259   26   No
+4      0  107  60    25  26.4  0.133   23   No
+5      5   97  76    27  35.6  0.378   52  Yes
+6      3   83  58    31  34.3  0.336   25   No
+7      1  193  50    16  25.9  0.655   24   No
+8      3  142  80    15  32.4  0.200   63   No
+9      2  128  78    37  43.3  1.224   31  Yes
+##################### Tail #####################
+     npreg  glu  bp  skin   bmi    ped  age type
+190      0  119  64    18  34.9  0.725   23   No
+191      5  155  84    44  38.7  0.619   34   No
+192      1  128  48    45  40.5  0.613   24  Yes
+193      2  112  68    22  34.1  0.315   26   No
+194      1  140  74    26  24.1  0.828   23   No
+195      2  141  58    34  25.4  0.699   24   No
+196      7  129  68    49  38.5  0.439   43  Yes
+197      0  106  70    37  39.4  0.605   22   No
+198      1  118  58    36  33.3  0.261   23   No
+199      8  155  62    26  34.0  0.543   46  Yes
+##################### NA #####################
+npreg    0
+glu      0
+bp       0
+skin     0
+bmi      0
+ped      0
+age      0
+type     0
+dtype: int64
+##################### Quantiles #####################
+         0.00     0.05      0.50       0.95       0.99     1.00
+npreg   0.000   0.0000    2.0000   10.05000   13.01000   14.000
+glu    56.000  79.9500  120.5000  187.05000  197.01000  199.000
+bp     38.000  53.9000   70.0000   90.00000  102.04000  110.000
+skin    7.000  12.0000   29.0000   46.00000   52.08000   99.000
+bmi    18.200  22.4850   32.8000   42.61500   46.30500   47.900
+ped     0.085   0.1379    0.3725    0.96965    1.39704    2.288
+age    21.000  21.0000   28.0000   57.05000   62.00000   63.000
+##################### Corr #####################
+          npreg       glu        bp      skin       bmi       ped       age
+npreg  1.000000  0.170525  0.252061  0.109049  0.058336 -0.119473  0.598922
+glu    0.170525  1.000000  0.269381  0.217597  0.216790  0.060710  0.343407
+bp     0.252061  0.269381  1.000000  0.264963  0.238821 -0.047400  0.391073
+skin   0.109049  0.217597  0.264963  1.000000  0.659036  0.095403  0.251926
+bmi    0.058336  0.216790  0.238821  0.659036  1.000000  0.190551  0.131920
+ped   -0.119473  0.060710 -0.047400  0.095403  0.190551  1.000000 -0.071410
+age    0.598922  0.343407  0.391073  0.251926  0.131920 -0.071410  1.000000
+##################### Describe #####################
+            npreg         glu          bp        skin         bmi         ped  \
+count  200.000000  200.000000  200.000000  200.000000  200.000000  200.000000   
+mean     3.570000  123.970000   71.260000   29.215000   32.310000    0.460765   
+std      3.366268   31.667225   11.479604   11.724594    6.130212    0.307225   
+min      0.000000   56.000000   38.000000    7.000000   18.200000    0.085000   
+25%      1.000000  100.000000   64.000000   20.750000   27.575000    0.253500   
+50%      2.000000  120.500000   70.000000   29.000000   32.800000    0.372500   
+75%      6.000000  144.000000   78.000000   36.000000   36.500000    0.616000   
+max     14.000000  199.000000  110.000000   99.000000   47.900000    2.288000   
+
+              age  
+count  200.000000  
+mean    32.110000  
+std     10.975436  
+min     21.000000  
+25%     23.000000  
+50%     28.000000  
+75%     39.250000  
+max     63.000000  
+```
+
+#### a. Pima Kızılderili kadınları için diyastolik kan basıncının popülasyon ortalamasının 70 olmadığı hipotezini değerlendiriniz.
+
+* bp : diastolic blood pressure (mm Hg).
+
+* Null Hipotez (H0): Pima Kızılderili kadınlarının diyastolik kan basıncının popülasyon ortalaması 70'tir.
+
+* Alternatif Hipotez (H1): Pima Kızılderili kadınlarının diyastolik kan basıncının popülasyon ortalaması 70 değildir.
+
+* Alternatif hiptotezimiz detaylı olarak incelendiğinde bir değere eşit değildir olarak ele alındığı için işlemler gerçekleştirilirken Two Sided (Çift Taraflı) olarak gerçekleştirilmiştir.
+
+```py
+def data_metrics(data, column):
+    print("Mean: ",data[column].mean())
+    print("Median: ",data[column].median())
+    print("Variance: ",data[column].var())
+    print("Standard Deviation: ",data[column].std())
+
+data_metrics(data,'bp')
+```
+
+* Mean:  71.26
+* Median:  70.0
+* Variance:  131.7813065326633
+* Standard Deviation:  11.479603936228083
+
+```py
+data.hist(column='bp',grid=False,edgecolor='black', linewidth=1.2)
+```
+
+![BP Değişkeninin Histogram Grafiği](photos/Problem_4_Photo_1.png)
+
+* Verimizde 200 kişiye ait gözlem verisi bulunmaktadır. Bunun yanında popülasyon varyans veya popülasyon standart sapma değeri hakkında herhangi bir bilgi paylaşılmamıştır. Bu noktada t-test kullanmanın en uygun yöntem olacağı düşünülmüştür. Ek olarak popülasyon-örneklem karşılaştırması yapılacağı için One Sample yöntemi kullanılmıştır.
+
+```py
+diastolic_blood_pressure = data['bp']
+
+t_statistic, p_value = ttest_1samp(diastolic_blood_pressure, 70,alternative='two-sided')
+
+print("One-sample t-test results:")
+print("Null hypothesis: The population mean of diastolic blood pressure is 70")
+print("Alternative hypothesis: The population mean of diastolic blood pressure is not 70")
+print("Test statistic:", t_statistic)
+print("P-value:", p_value)
+
+if(p_value <  0.05):
+    print("Reject Null Hypothesis")
+else:
+    print("Not to Reject NUll Hypothesis")
+```
+
+```
+One-sample t-test results:
+Null hypothesis: The population mean of diastolic blood pressure is 70
+Alternative hypothesis: The population mean of diastolic blood pressure is not 70
+Test statistic: 1.5522391700001443
+P-value: 0.12219390499331204
+Not to Reject NUll Hypothesis
+```
+
+* Elde edilen sonuç beklenen aralıkta olduğu için istatiksel olarak açıklanamayan bir durum yoktur. Yani Not to Reject NUll Hypothesis deriz.
+
+#### b. Diyabetik ve diyabetik olmayan Pima Kızılderili kadınlar için diyastolik kan basıncının örnek ortalamaları arasındaki farkı bulunuz. Diyastolik kan basıncı ortalamaları arasındaki fark 0.01 düzeyinde istatistiksel olarak anlamlı mı?
+
+* İlk olarak veri setimiz iki ayrı gruba ayrılmıştır. Diyabet olanların olduğu veri seti 68 örneklemden oluşmaktadır. Diyabet olmayan veri seti ise 132 adet örneklemden oluşmaktadır. Her bir veri seti için bp (kan basıncı) ortalama değeri bulunmuş ve her bir örneklemden ortalam değer çıkarılmıştır.
+
+```py 
+diastolic = (data[data['type']=='Yes'])
+diastolic.head()
+```
+
+||	npreg|	glu|	bp|skin|	bmi	|ped|	age|	type|
+|-|-|-|-|-|-|-|-|-|
+|1	|7	|195	|70	|33	|25.1	|0.163	|55|	Yes|
+|5	|5	|97|	76|	27|	35.6|	0.378|	52|	Yes|
+|9	|2	|128|	78|	37|	43.3|	1.224|	31|	Yes|
+|10|	0	|137|	40|	35|	43.1|	2.288|	33|	Yes|
+|12|	1	|189|	60|	23|	30.1|	0.398|	59|	Yes|
+
+```py
+not_diastolic = (data[data['type']=='No']) 
+not_diastolic.head()
+```
+
+
+||npreg|	glu|	bp|	skin	|bmi	|ped	|age|	type|
+|-|-|-|-|-|-|-|-|-|
+|0	|5	|86	|68|	28|	30.2|	0.364|	24|	No|
+|2	|5	|77|	82|	41|	35.8|	0.156|	35|	No|
+|3	|0	|165|	76|	43|	47.9|	0.259|	26|	No|
+|4	|0	|107	|60	|25|	26.4|	0.133|	23|	No|
+|6	|3	|83|	58|	31|	34.3|	0.336|	25|	No|
+
+```py
+# Value - Mean_Value (for each data)
+diastolic_mean = diastolic['bp']-diastolic['bp'].mean()
+not_diastolic_mean = not_diastolic['bp']-not_diastolic['bp'].mean()
+```
+
+* Popülasyon'a ait varyans ve standart sapma değerleri bilinmediği için t-test kullanıma karar verilmiştir. Elimizde farklı kişilerden oluşan 2 adet veri seti bulunmaktadır. Bundan dolayı Two Sample Independent olarak işlemler gerçekleştirilmiştir. Nihai olarak elde edilen p-value değeri soru içerisinde belirtilen 0.01 değeri ile karşılaştırılarak hipotez testi gerçekleştirilmiştir.
+
+```py
+t_statistic, p_value = ttest_ind(diastolic_mean,not_diastolic_mean,alternative='two-sided')
+
+print("Two Sample (Independent) t-test results:")
+print("Null hypothesis: Same population")
+print("Alternative hypothesis: Different population")
+print("Test statistic:", t_statistic)
+print("P-value:", p_value)
+
+if(p_value <  0.01):
+    print("Reject Null Hypothesis")
+else:
+    print("Not to Reject NUll Hypothesis")
+```
+
+```
+Two Sample (Independent) t-test results:
+Null hypothesis: Same population
+Alternative hypothesis: Different population
+Test statistic: -2.2163698833943503e-15
+P-value: 0.9999999999999982
+Not to Reject NUll Hypothesis
+```
+
+* Sonuçta istatiksel olarak anlamlı bir fark olmadığı görülmüş ve *Not to Reject NUll Hypothesis* kararı verilmiştir.
