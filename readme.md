@@ -24,6 +24,7 @@
     - [Solving Problem 4](#solving-problem-4)
       - [a. Pima Kızılderili kadınları için diyastolik kan basıncının popülasyon ortalamasının 70 olmadığı hipotezini değerlendiriniz.](#a-pima-kızılderili-kadınları-için-diyastolik-kan-basıncının-popülasyon-ortalamasının-70-olmadığı-hipotezini-değerlendiriniz)
       - [b. Diyabetik ve diyabetik olmayan Pima Kızılderili kadınlar için diyastolik kan basıncının örnek ortalamaları arasındaki farkı bulunuz. Diyastolik kan basıncı ortalamaları arasındaki fark 0.01 düzeyinde istatistiksel olarak anlamlı mı?](#b-diyabetik-ve-diyabetik-olmayan-pima-kızılderili-kadınlar-için-diyastolik-kan-basıncının-örnek-ortalamaları-arasındaki-farkı-bulunuz-diyastolik-kan-basıncı-ortalamaları-arasındaki-fark-001-düzeyinde-istatistiksel-olarak-anlamlı-mı)
+  - [Problem 5](#problem-5)
   
 ## Problem 1
 
@@ -44,7 +45,13 @@ d.	Tüm değişkenleri özetlemek için betimleyici istatistik bilgilerini hesap
 *Income* : Community income level (in thousands of dollars)
 *Education* : Education level at each location
 
-TODO: Histogram grafikleri eklenecek ve istenen sorulara cevap aranacak.
+![](photos/Problem_1_Photo_1.png)
+
+* Yukarıdaki grafik income değişkenine ait histogram grafiğidir. Yukarıdaki grafik incelendiğinde tepe görüntüsü oluşturan bir yapıdan ziyade farklı tepe noktalarına sahip dalgalı bir yapıda oluduğu görmek mümkündür. Bu yüzden bu histogram grafiği **bimodal histogramdır**.
+
+![](photos/Problem_1_Photo_2.png)
+
+* Yukarıdaki grafik education değişkenine ait histogram grafiğidir. Histogram grafiği incelendiğinde net bir tepe değeri olduğunu görmek mümkündür. Bu yüzden bu grafik için **unimodal histogram** diyebiliriz. Aynı zamanda tepe değeri sağ tarafta olduğu içinn **left skewed** diyebiliriz.
 
 #### b. Sales değişkeni için ortalama, medyan, varyans ve standart sapma ölçümlerini ve değişkenler arasındaki covaryansı hesaplayınız.
 
@@ -65,7 +72,7 @@ Variance:  7.975625808897243
 Standard Deviation:  2.824115048806837
 ```
 
-```
+```py
 data.corr()
 ```
 
@@ -80,10 +87,19 @@ data.corr()
 |Age|	-0.231815	|-0.100239	|-0.004670	|-0.004557|	-0.042663	|-0.102177|	1.000000|	0.006488|
 |Education|	-0.051955	|0.025197	|-0.056855|	-0.033594|	-0.106378	|0.011747|	0.006488|	1.000000|
 
+![](photos/Problem_1_Photo_3.png)
+
 
 #### c. Ages değişkeni için 10, 25, 75, 90 niceliklerini hesaplayınız.
 
-TODO: 
+```py 
+x = np.quantile(data['Age'], [0.1,0.25,0.75,0.9])
+print(x)
+```
+
+```
+[30.   39.75 66.   76.  ]
+```
 
 #### d. Tüm değişkenleri özetlemek için betimleyici istatistik bilgilerini hesaplayınız.
 
@@ -972,3 +988,7 @@ Not to Reject NUll Hypothesis
 ```
 
 * Sonuçta istatiksel olarak anlamlı bir fark olmadığı görülmüş ve *Not to Reject NUll Hypothesis* kararı verilmiştir.
+
+## Problem 5
+
+Bu problem kapsamında kalp hastalarına ait bilgiler içeren bir veri seti kullanılmıştır. Çalışma kapsamında alternatif hipotez iler sürülmüş ve null hipotezin geçerliliği test edilmiştir. Son olarak veri analizi için Chi-square, TODO: testleri kullanılmıştır.
