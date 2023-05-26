@@ -283,7 +283,7 @@ UCI sitesine yüklenen https://archive.ics.uci.edu/ml/datasets/adult “adult.da
 
 ![Capital-Gain Photo](photos/Problem_2_Photo_1.png)
 
-TODO: Eklenen grafik hakkında yorumda bulun.
+* Yukarıdaki grafik capital-gain değişkenine ait histogram grafiğidir. Histogram grafiği incelendiğinde net bir tepe değeri olduğunu görmek mümkündür. Bu yüzden bu grafik için **unimodal histogram** diyebiliriz. Aynı zamanda tepe değeri sol tarafta olduğu içinn **right skewed** diyebiliriz.
 
 #### b. Veri setindeki yerel ülke değişkenine dayalı kategorik bir “kıta” değişkeni oluşturun, her gözlemi tek tek gözden geçirin ve her gözlemi “Kuzey Amerika”, “Güney Amerika”, “Avrupa” kategorilerinden birine atayınız. “Asya”, “Avustralya”, “Afrika”. Bunu yapmak için, döngüler ve koşullu ifadeler için kullanınız.
 
