@@ -25,6 +25,9 @@
       - [a. Pima Kızılderili kadınları için diyastolik kan basıncının popülasyon ortalamasının 70 olmadığı hipotezini değerlendiriniz.](#a-pima-kızılderili-kadınları-için-diyastolik-kan-basıncının-popülasyon-ortalamasının-70-olmadığı-hipotezini-değerlendiriniz)
       - [b. Diyabetik ve diyabetik olmayan Pima Kızılderili kadınlar için diyastolik kan basıncının örnek ortalamaları arasındaki farkı bulunuz. Diyastolik kan basıncı ortalamaları arasındaki fark 0.01 düzeyinde istatistiksel olarak anlamlı mı?](#b-diyabetik-ve-diyabetik-olmayan-pima-kızılderili-kadınlar-için-diyastolik-kan-basıncının-örnek-ortalamaları-arasındaki-farkı-bulunuz-diyastolik-kan-basıncı-ortalamaları-arasındaki-fark-001-düzeyinde-istatistiksel-olarak-anlamlı-mı)
   - [Problem 5](#problem-5)
+    - [T-test](#t-test)
+    - [Chi Square Test](#chi-square-test)
+    - [ANOVA Test](#anova-test)
   
 ## Problem 1
 
@@ -991,4 +994,365 @@ Not to Reject NUll Hypothesis
 
 ## Problem 5
 
-Bu problem kapsamında kalp hastalarına ait bilgiler içeren bir veri seti kullanılmıştır. Çalışma kapsamında alternatif hipotez iler sürülmüş ve null hipotezin geçerliliği test edilmiştir. Son olarak veri analizi için Chi-square, TODO: testleri kullanılmıştır.
+Bu problem kapsamında kalp hastalarına ait bilgiler içeren bir veri seti kullanılmıştır. Çalışma kapsamında alternatif hipotez ileri sürülmüş ve null hipotezin geçerliliği test edilmiştir. Son olarak veri analizi için Chi-square ve ANOVA testleri kullanılmıştır.
+
+* Veri setine ait detaylı bilgiler aşağıda verilen fonksiyon yardımı ile gösterilmiştir.
+
+```py
+def check_df(dataframe, head=10):
+    '''
+    Provides general information about the loaded data.
+
+    Parameters
+    ----------
+    dataframe: dataframe
+    head: int
+
+    Notes
+    ----------
+    The head value is set to a constant 5.
+    '''
+    print("##################### Shape #####################")
+    print(dataframe.shape)
+    print("##################### Types #####################")
+    print(dataframe.dtypes)
+    print("##################### Head #####################")
+    print(dataframe.head(head))
+    print("##################### Tail #####################")
+    print(dataframe.tail(head))
+    print("##################### NA #####################")
+    print(dataframe.isnull().sum())
+    print("##################### Quantiles #####################")
+    print(dataframe.quantile([0, 0.05, 0.50, 0.95, 0.99, 1]).T)
+    print("##################### Corr #####################")
+    print(dataframe.corr())
+    print("##################### Describe #####################")
+    print(dataframe.describe().T)
+
+check_df(data)
+```
+
+```
+##################### Shape #####################
+(299, 13)
+##################### Types #####################
+age                         float64
+anaemia                       int64
+creatinine_phosphokinase      int64
+diabetes                      int64
+ejection_fraction             int64
+high_blood_pressure           int64
+platelets                   float64
+serum_creatinine            float64
+serum_sodium                  int64
+sex                           int64
+smoking                       int64
+time                          int64
+DEATH_EVENT                   int64
+dtype: object
+##################### Head #####################
+    age  anaemia  creatinine_phosphokinase  diabetes  ejection_fraction  \
+0  75.0        0                       582         0                 20   
+1  55.0        0                      7861         0                 38   
+2  65.0        0                       146         0                 20   
+3  50.0        1                       111         0                 20   
+4  65.0        1                       160         1                 20   
+5  90.0        1                        47         0                 40   
+6  75.0        1                       246         0                 15   
+7  60.0        1                       315         1                 60   
+8  65.0        0                       157         0                 65   
+9  80.0        1                       123         0                 35   
+
+   high_blood_pressure  platelets  serum_creatinine  serum_sodium  sex  \
+0                    1  265000.00               1.9           130    1   
+1                    0  263358.03               1.1           136    1   
+2                    0  162000.00               1.3           129    1   
+3                    0  210000.00               1.9           137    1   
+4                    0  327000.00               2.7           116    0   
+5                    1  204000.00               2.1           132    1   
+6                    0  127000.00               1.2           137    1   
+7                    0  454000.00               1.1           131    1   
+8                    0  263358.03               1.5           138    0   
+9                    1  388000.00               9.4           133    1   
+
+   smoking  time  DEATH_EVENT  
+0        0     4            1  
+1        0     6            1  
+2        1     7            1  
+3        0     7            1  
+4        0     8            1  
+5        1     8            1  
+6        0    10            1  
+7        1    10            1  
+8        0    10            1  
+9        1    10            1  
+##################### Tail #####################
+      age  anaemia  creatinine_phosphokinase  diabetes  ejection_fraction  \
+289  90.0        1                       337         0                 38   
+290  45.0        0                       615         1                 55   
+291  60.0        0                       320         0                 35   
+292  52.0        0                       190         1                 38   
+293  63.0        1                       103         1                 35   
+294  62.0        0                        61         1                 38   
+295  55.0        0                      1820         0                 38   
+296  45.0        0                      2060         1                 60   
+297  45.0        0                      2413         0                 38   
+298  50.0        0                       196         0                 45   
+
+     high_blood_pressure  platelets  serum_creatinine  serum_sodium  sex  \
+289                    0   390000.0               0.9           144    0   
+290                    0   222000.0               0.8           141    0   
+291                    0   133000.0               1.4           139    1   
+292                    0   382000.0               1.0           140    1   
+293                    0   179000.0               0.9           136    1   
+294                    1   155000.0               1.1           143    1   
+295                    0   270000.0               1.2           139    0   
+296                    0   742000.0               0.8           138    0   
+297                    0   140000.0               1.4           140    1   
+298                    0   395000.0               1.6           136    1   
+
+     smoking  time  DEATH_EVENT  
+289        0   256            0  
+290        0   257            0  
+291        0   258            0  
+292        1   258            0  
+293        1   270            0  
+294        1   270            0  
+295        0   271            0  
+296        0   278            0  
+297        1   280            0  
+298        1   285            0  
+##################### NA #####################
+age                         0
+anaemia                     0
+creatinine_phosphokinase    0
+diabetes                    0
+ejection_fraction           0
+high_blood_pressure         0
+platelets                   0
+serum_creatinine            0
+serum_sodium                0
+sex                         0
+smoking                     0
+time                        0
+DEATH_EVENT                 0
+dtype: int64
+##################### Quantiles #####################
+                             0.00      0.05      0.50      0.95        0.99  \
+age                          40.0      42.9      60.0      82.0      90.080   
+anaemia                       0.0       0.0       0.0       1.0       1.000   
+creatinine_phosphokinase     23.0      59.0     250.0    2263.0    5222.460   
+diabetes                      0.0       0.0       0.0       1.0       1.000   
+ejection_fraction            14.0      20.0      38.0      60.0      62.060   
+high_blood_pressure           0.0       0.0       0.0       1.0       1.000   
+platelets                 25100.0  131800.0  262000.0  422500.0  544560.000   
+serum_creatinine              0.5       0.7       1.1       3.0       6.114   
+serum_sodium                113.0     130.0     137.0     144.0     145.000   
+sex                           0.0       0.0       1.0       1.0       1.000   
+smoking                       0.0       0.0       0.0       1.0       1.000   
+time                          4.0      12.9     115.0     250.0     271.140   
+DEATH_EVENT                   0.0       0.0       0.0       1.0       1.000   
+
+                              1.00  
+age                           95.0  
+anaemia                        1.0  
+creatinine_phosphokinase    7861.0  
+diabetes                       1.0  
+ejection_fraction             80.0  
+high_blood_pressure            1.0  
+platelets                 850000.0  
+serum_creatinine               9.4  
+serum_sodium                 148.0  
+sex                            1.0  
+smoking                        1.0  
+time                         285.0  
+DEATH_EVENT                    1.0  
+##################### Corr #####################
+                               age   anaemia  creatinine_phosphokinase  \
+age                       1.000000  0.088006                 -0.081584   
+anaemia                   0.088006  1.000000                 -0.190741   
+creatinine_phosphokinase -0.081584 -0.190741                  1.000000   
+diabetes                 -0.101012 -0.012729                 -0.009639   
+ejection_fraction         0.060098  0.031557                 -0.044080   
+high_blood_pressure       0.093289  0.038182                 -0.070590   
+platelets                -0.052354 -0.043786                  0.024463   
+serum_creatinine          0.159187  0.052174                 -0.016408   
+serum_sodium             -0.045966  0.041882                  0.059550   
+sex                       0.065430 -0.094769                  0.079791   
+smoking                   0.018668 -0.107290                  0.002421   
+time                     -0.224068 -0.141414                 -0.009346   
+DEATH_EVENT               0.253729  0.066270                  0.062728   
+
+                          diabetes  ejection_fraction  high_blood_pressure  \
+age                      -0.101012           0.060098             0.093289   
+anaemia                  -0.012729           0.031557             0.038182   
+creatinine_phosphokinase -0.009639          -0.044080            -0.070590   
+diabetes                  1.000000          -0.004850            -0.012732   
+ejection_fraction        -0.004850           1.000000             0.024445   
+high_blood_pressure      -0.012732           0.024445             1.000000   
+platelets                 0.092193           0.072177             0.049963   
+serum_creatinine         -0.046975          -0.011302            -0.004935   
+serum_sodium             -0.089551           0.175902             0.037109   
+sex                      -0.157730          -0.148386            -0.104615   
+smoking                  -0.147173          -0.067315            -0.055711   
+time                      0.033726           0.041729            -0.196439   
+DEATH_EVENT              -0.001943          -0.268603             0.079351   
+
+                          platelets  serum_creatinine  serum_sodium       sex  \
+age                       -0.052354          0.159187     -0.045966  0.065430   
+anaemia                   -0.043786          0.052174      0.041882 -0.094769   
+creatinine_phosphokinase   0.024463         -0.016408      0.059550  0.079791   
+diabetes                   0.092193         -0.046975     -0.089551 -0.157730   
+ejection_fraction          0.072177         -0.011302      0.175902 -0.148386   
+high_blood_pressure        0.049963         -0.004935      0.037109 -0.104615   
+platelets                  1.000000         -0.041198      0.062125 -0.125120   
+serum_creatinine          -0.041198          1.000000     -0.189095  0.006970   
+serum_sodium               0.062125         -0.189095      1.000000 -0.027566   
+sex                       -0.125120          0.006970     -0.027566  1.000000   
+smoking                    0.028234         -0.027414      0.004813  0.445892   
+time                       0.010514         -0.149315      0.087640 -0.015608   
+DEATH_EVENT               -0.049139          0.294278     -0.195204 -0.004316   
+
+                           smoking      time  DEATH_EVENT  
+age                       0.018668 -0.224068     0.253729  
+anaemia                  -0.107290 -0.141414     0.066270  
+creatinine_phosphokinase  0.002421 -0.009346     0.062728  
+diabetes                 -0.147173  0.033726    -0.001943  
+ejection_fraction        -0.067315  0.041729    -0.268603  
+high_blood_pressure      -0.055711 -0.196439     0.079351  
+platelets                 0.028234  0.010514    -0.049139  
+serum_creatinine         -0.027414 -0.149315     0.294278  
+serum_sodium              0.004813  0.087640    -0.195204  
+sex                       0.445892 -0.015608    -0.004316  
+smoking                   1.000000 -0.022839    -0.012623  
+time                     -0.022839  1.000000    -0.526964  
+DEATH_EVENT              -0.012623 -0.526964     1.000000  
+##################### Describe #####################
+                          count           mean           std      min  \
+age                       299.0      60.833893     11.894809     40.0   
+anaemia                   299.0       0.431438      0.496107      0.0   
+creatinine_phosphokinase  299.0     581.839465    970.287881     23.0   
+diabetes                  299.0       0.418060      0.494067      0.0   
+ejection_fraction         299.0      38.083612     11.834841     14.0   
+high_blood_pressure       299.0       0.351171      0.478136      0.0   
+platelets                 299.0  263358.029264  97804.236869  25100.0   
+serum_creatinine          299.0       1.393880      1.034510      0.5   
+serum_sodium              299.0     136.625418      4.412477    113.0   
+sex                       299.0       0.648829      0.478136      0.0   
+smoking                   299.0       0.321070      0.467670      0.0   
+time                      299.0     130.260870     77.614208      4.0   
+DEATH_EVENT               299.0       0.321070      0.467670      0.0   
+
+                               25%       50%       75%       max  
+age                           51.0      60.0      70.0      95.0  
+anaemia                        0.0       0.0       1.0       1.0  
+creatinine_phosphokinase     116.5     250.0     582.0    7861.0  
+diabetes                       0.0       0.0       1.0       1.0  
+ejection_fraction             30.0      38.0      45.0      80.0  
+high_blood_pressure            0.0       0.0       1.0       1.0  
+platelets                 212500.0  262000.0  303500.0  850000.0  
+serum_creatinine               0.9       1.1       1.4       9.4  
+serum_sodium                 134.0     137.0     140.0     148.0  
+sex                            0.0       1.0       1.0       1.0  
+smoking                        0.0       0.0       1.0       1.0  
+time                          73.0     115.0     203.0     285.0  
+DEATH_EVENT                    0.0       0.0       1.0       1.0  
+```
+
+![](photos/Problem_5_Photo_1.png)
+
+![](photos/Problem_5_Photo_4.png)
+
+### T-test
+
+* age : Kişilere ait yaş bilgisi
+
+* Null Hipotez (H0): Kalp krizi tanısı konmuş kişilerin yaş ortalaması 60'dır.
+
+* Alternatif Hipotez (H1): Kalp krizi tanısı konmuş kişilerin yaş ortalaması 60 değildir.
+
+```py
+def data_metrics(data, column):
+    print("Mean: ",data[column].mean())
+    print("Median: ",data[column].median())
+    print("Variance: ",data[column].var())
+    print("Standard Deviation: ",data[column].std())
+
+data_metrics(data,'age')
+```
+
+```
+Mean:  60.83389297658862
+Median:  60.0
+Variance:  141.48648290797084
+Standard Deviation:  11.894809074044478
+```
+
+![](photos/Problem_5_Photo_2.png)
+
+* Yukarıdaki grafik age değişkenine ait histogram grafiğidir. Histogram grafiği incelendiğinde net bir tepe değeri olduğunu görmek mümkündür. Bu yüzden bu grafik için **unimodal histogram** diyebiliriz.
+
+```py
+heart_failure_age = data['age']
+
+t_statistic, p_value = ttest_1samp(heart_failure_age, 60,alternative='two-sided')
+
+print("One-sample t-test results:")
+print("Null hypothesis: The population mean of age is equal to 60. ")
+print("Alternative hypothesis: The population mean of age is not equal to 60.")
+print("Test statistic:", t_statistic)
+print("P-value:", p_value)
+
+if(p_value <  0.05):
+    print("Reject Null Hypothesis")
+else:
+    print("Not to Reject NUll Hypothesis")
+```
+
+```
+One-sample t-test results:
+Null hypothesis: The population mean of age is equal to 60. 
+Alternative hypothesis: The population mean of age is not equal to 60.
+Test statistic: 1.212239510102878
+P-value: 0.226380929785253
+Not to Reject NUll Hypothesis
+```
+
+* One sample - two sided t-test uygulanmıştır. Elde edilen sonuçlarda görüldüğü gibi **not to reject null hypothesis** sonucu elde edilmiştir.
+
+### Chi Square Test
+
+* Chi Square testi için veri seti içerisindeki age değişkeni 5 değer aralığına ayrılarak kategorize edilmiştir. Daha sonrasında chi square testi uygulanmıştır. Age değişkeninin minumum değeri 45 ve maksimum değeri 95'dir.
+
+* Null Hipotez (H0): Kalp krizi teşhisi konmuş kişilerde yaş değişkeninin ölüme bir etkisi yoktur.
+
+||40-50 yaş aralığı|50-60 yaş aralığı|60-70 yaş aralığı|70-80 yaş aralığı|80-95 yaş aralığı|
+|-|-|-|-|-|-|
+|Ölenlerin sayısı|19| 33|34|25| 18|
+
+```
+t test statistic=8.790697674418604, pvalue=0.06654934467901846
+```
+
+![](photos/Problem_5_Photo_3.png)
+
+* 8.79 < 9.488 koşulu sağlandığı için not to rejecet null hipotez sonucuna ulaşılır. Yani yaş değişkenin ölüm üzerinde bir etkisi yoktur hipotezi reddedilmez.
+
+### ANOVA Test
+
+* ANOVA testini gerçekleştirmek için veri seti içerisindeki **creatinine_phosphokinase** değişkeni kullanılmıştır. Her bir grup 70 örnekten oluşacak şekilde rastgele seçilmiştir. Bu sayede hem independent olmas hem de normal dağılım ön koşulu sağlanmıştır. Rastgele seçim ile homojen dağılım ön koşulu da sağlanmaya çalışılmıştır.
+
+* ANOVA testi için scipy kütüphanesi altındaki f_oneway kullanılmıştır. Ön koşulları sağlayan 4 adet sample fonksiyona verilmiştir. Hesaplanan p_value değerine göre nihai sonuç elde edilmiştir. Sonuç olarak *Not to Reject NUll Hypothesis* elde edilmiştir. Yani bu sample'ların benzer özellikler gösterdiği tespit edilmiştir. Aynı veri setinden rastgele seçilerek oluşturulan sample'lar olduğu için beklenen bir sonuç elde edilmiştir.
+
+![](photos/Problem_5_Photo_5.png)
+
+* Yukarıdaki grafik creatinine_phosphokinase değişkenine ait histogram grafiğidir. Histogram grafiği incelendiğinde net bir tepe değeri olduğunu görmek mümkündür. Bu yüzden bu grafik için **unimodal histogram** diyebiliriz. Aynı zamanda tepe değeri sol tarafta olduğu için **right skewed** diyebiliriz.
+
+```py
+statistic_result, p_value =  f_oneway(first_25, second_25, third_25, fourth_25)
+
+if(p_value <  0.05):
+    print("Reject Null Hypothesis")
+else:
+    print("Not to Reject NUll Hypothesis")
+```
